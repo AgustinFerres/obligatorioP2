@@ -85,7 +85,7 @@ public class SystemGame {
         System.out.println(e.getMessage());
       }
 
-      System.out.println(currentBoard);
+      showBoard(pos);
 
       System.out.println(currentPlayer + "'s turn");
       System.out.println("Enter position:");
@@ -93,6 +93,44 @@ public class SystemGame {
       pos = Position.getPosition(scanner.nextLine());
     }
 
+  }
+
+  public void showBoard(Position currentPos) {
+    final String RESET = "\u001B[0m";
+    final String RED = "\u001B[31m";
+    final String GREEN = "\u001B[32m";
+    final String YELLOW = "\u001B[33m";
+
+    StringBuilder sb = new StringBuilder();
+    sb.append(GREEN).append("*************************************\n").append(RESET); // Outer top border
+    for (int i = 0; i < 3; i++) {
+      for (int x = 0; x < 3; x++) { // Iterate rows of each 3x3 inner board
+        sb.append(GREEN).append("* ").append(RESET); // Start of row
+        for (int j = 0; j < 3; j++) {
+          Board currentBoard = board[i][j]; // Current 3x3 board
+          for (int y = 0; y < 3; y++) {
+            String value = CellValue.BLANK.equals(currentBoard.getPosition(Position.getPosition(x, y))) ? " " : currentBoard.getPosition(Position.getPosition(x, y)).toString();
+            sb.append(value);
+
+            if (y < 2) {
+              sb.append(" | "); // Vertical border between cells
+            } else {
+              sb.append(" "); // End of row
+            }
+          }
+          sb.append(GREEN).append("* ").append(RESET); // Right border of a single 3x3 board
+        }
+        if (x < 2) {
+          sb.append(GREEN).append("\n*").append(RESET).append("---+---+---").append(GREEN)
+              .append("*").append(RESET).append("---+---+---").append(GREEN)
+              .append("*").append(RESET).append("---+---+---").append(GREEN).append("*\n").append(RESET); // Horizontal border between rows
+        } else {
+          sb.append("\n"); // End of last row
+        }
+      }
+      sb.append(GREEN).append("*************************************\n").append(RESET); // Bottom border between boards
+    }
+    System.out.println(sb.toString());
   }
 }
 

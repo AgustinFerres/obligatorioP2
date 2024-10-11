@@ -41,4 +41,13 @@ public enum Position {
     }
     return null;
   }
+
+  public static Position getPosition(int x, int y) {
+    for (Position pos : Position.values()) {
+      if (pos.getX() == x && pos.getY() == y) {
+        return pos;
+      }
+    }
+    return null;
+  }
 }

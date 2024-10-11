@@ -1,5 +1,6 @@
 import model.Player;
 import model.SystemGame;
+import types.Position;
 
 public class Main {
   public static void main(String[] args) {
@@ -11,5 +12,6 @@ public class Main {
     game.addPlayer(player2);
     game.startGame();
 
+//    game.showBoard(Position.B2);
   }
 }

@@ -51,20 +51,4 @@ public class Board {
     setPosition(pos, player.getType());
   }
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    for (int i = 0; i < 3; i++) {
-      for (int j = 0; j < 3; j++) {
-        sb.append(board[i][j]);
-        if (j < 2) {
-          sb.append(" | ");
-        }
-      }
-      if (i < 2) {
-        sb.append("\n");
-      }
-    }
-    return sb.toString();
-  }
 }
