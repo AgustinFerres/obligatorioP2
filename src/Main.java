@@ -12,6 +12,6 @@ public class Main {
     game.addPlayer(player2);
     game.startGame();
 
-//    game.showBoard(Position.B2);
+//    game.showBoard(Position.B3);
   }
 }
