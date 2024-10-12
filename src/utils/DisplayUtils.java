@@ -176,11 +176,18 @@ public class DisplayUtils {
     System.out.println(sb.toString());
   }
 
+  /**
+   * Displays the ranking of players.
+   *
+   * @param players a list of Player objects representing the players and their scores
+   */
   public static void showRanking(List<Player> players) {
     StringBuilder sb = new StringBuilder();
 
+    // Append the top delimiter
     sb.append(generateDelimiter());
 
+    // Append each player's alias and score
     for (Player player : players) {
       sb.append(BLUE)
           .append(player.getAlias())
@@ -189,8 +196,10 @@ public class DisplayUtils {
           .append("\n");
     }
 
+    // Append the bottom delimiter
     sb.append(generateDelimiter());
 
+    // Print the final ranking display
     System.out.println(sb.toString());
   }
 
@@ -198,6 +207,10 @@ public class DisplayUtils {
     return GREEN + "-".repeat(50) + RESET + "\n";
   }
 
+  /**
+   * Clears the console screen.
+   * Only works on Unix-based systems.
+   */
   public static void clearScreen() {
     System.out.print("\033[H\033[2J");
     System.out.flush();

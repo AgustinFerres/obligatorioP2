@@ -1,8 +1,6 @@
 import model.Player;
 import model.SystemGame;
-import utils.DisplayUtils;
 
-import java.util.Comparator;
 import java.util.List;
 
 public class Main {
