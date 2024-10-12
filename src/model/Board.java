@@ -6,13 +6,10 @@ import types.CellValue;
 public class Board {
 
   private final CellValue[][] board = new CellValue[3][3];
+  private Player winner;
 
   public Board() {
-    for (int i = 0; i < 3; i++) {
-      for (int j = 0; j < 3; j++) {
-        board[i][j] = CellValue.BLANK;
-      }
-    }
+    this.clear();
   }
 
   public CellValue getPosition(Position pos) {
@@ -47,8 +44,33 @@ public class Board {
         (board[0][2] == type && board[1][1] == type && board[2][0] == type);
   }
 
+  public void useMagicPlay(Player player) {
+    if (player.getMagicPlay() == 0) {
+      throw new IllegalArgumentException("No magic plays left");
+    }
+
+    player.useMagicPlay();
+    this.clear();
+  }
+
   public void play(Player player, Position pos) {
     setPosition(pos, player.getType());
+  }
+
+  public void setWinner(Player player) {
+    this.winner = player;
+  }
+
+  public Player getWinner() {
+    return this.winner;
+  }
+
+  private void clear() {
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        board[i][j] = CellValue.BLANK;
+      }
+    }
   }
 
 }

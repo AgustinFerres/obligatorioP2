@@ -9,10 +9,14 @@ public class Player {
   private CellValue type;
   private int age;
   private int score;
+  private int magicPlay;
 
-  public Player(String name) {
+  public Player(String name, String alias, int age) {
     this.name = name;
+    this.alias = alias;
+    this.age = age;
     this.score = 0;
+    this.magicPlay = 1;
   }
 
   public String getName() {
@@ -35,16 +39,12 @@ public class Player {
     return alias;
   }
 
-  public void setAlias(String alias) {
-    this.alias = alias;
+  public int getMagicPlay() {
+    return magicPlay;
   }
 
-  public int getAge() {
-    return age;
-  }
-
-  public void setAge(int age) {
-    this.age = age;
+  public void useMagicPlay() {
+    magicPlay--;
   }
 
   public CellValue getType() {
@@ -53,6 +53,6 @@ public class Player {
 
   @Override
   public String toString() {
-    return name;
+    return alias;
   }
 }

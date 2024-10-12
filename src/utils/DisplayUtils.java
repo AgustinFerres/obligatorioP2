@@ -1,8 +1,11 @@
 package utils;
 
 import model.Board;
-import types.CellValue;
+import model.Player;
+import types.MenuOptions;
 import types.Position;
+
+import java.util.List;
 
 public class DisplayUtils {
 
@@ -157,6 +160,47 @@ public class DisplayUtils {
     }
 
     return sb.toString();
+  }
+
+  public static void showMenu() {
+    StringBuilder sb = new StringBuilder();
+
+    sb.append(generateDelimiter());
+
+    for (MenuOptions option : MenuOptions.values()) {
+      sb.append(BLUE).append(option).append("\n");
+    }
+
+    sb.append(generateDelimiter());
+
+    System.out.println(sb.toString());
+  }
+
+  public static void showRanking(List<Player> players) {
+    StringBuilder sb = new StringBuilder();
+
+    sb.append(generateDelimiter());
+
+    for (Player player : players) {
+      sb.append(BLUE)
+          .append(player.getAlias())
+          .append(" | ")
+          .append("#".repeat(Math.max(0, player.getScore())))
+          .append("\n");
+    }
+
+    sb.append(generateDelimiter());
+
+    System.out.println(sb.toString());
+  }
+
+  private static String generateDelimiter() {
+    return GREEN + "-".repeat(50) + RESET + "\n";
+  }
+
+  public static void clearScreen() {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
   }
 
 }

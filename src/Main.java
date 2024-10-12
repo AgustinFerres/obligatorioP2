@@ -1,17 +1,26 @@
 import model.Player;
 import model.SystemGame;
-import types.Position;
+import utils.DisplayUtils;
+
+import java.util.Comparator;
+import java.util.List;
 
 public class Main {
   public static void main(String[] args) {
     SystemGame game = new SystemGame();
-    Player player1 = new Player("Player 1");
-    Player player2 = new Player("Player 2");
 
-    game.addPlayer(player1);
-    game.addPlayer(player2);
-    game.startGame();
+    Player player1 = new Player("John Doe", "John", 25);
+    Player player2 = new Player("Jane Doe", "Jane Doe", 23);
 
-//    game.showBoard(Position.B3);
+    player1.increaseScore();
+    player1.increaseScore();
+
+    List<Player> players = List.of(player1, player2);
+
+    game.start();
+
+//    DisplayUtils.showMenu();
+//    DisplayUtils.clearScreen();
+//    DisplayUtils.showRanking(players.stream().sorted(Comparator.comparingInt(Player::getScore).reversed()).toList());
   }
 }
