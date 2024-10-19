@@ -3,6 +3,12 @@ package model;
 import types.Position;
 import types.CellValue;
 
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * @author Agustin Ferres, 323408; Facundo San Andrea, 258053
+ */
 public class Board {
 
   private final CellValue[][] board = new CellValue[3][3];
@@ -16,7 +22,25 @@ public class Board {
     return board[pos.getX()][pos.getY()];
   }
 
+  public Set<Position> getAvailableMoves() {
+    Set<Position> availableMoves = new HashSet<>();
+
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        if (CellValue.BLANK.equals(board[i][j])) {
+          availableMoves.add(Position.getPosition(i, j));
+        }
+      }
+    }
+
+    return availableMoves;
+  }
+
   private void setPosition(Position pos, CellValue cellValue) {
+    if (pos == null) {
+      throw new IllegalArgumentException("Invalid position");
+    }
+
     if (cellValue == CellValue.BLANK) {
       throw new IllegalArgumentException("Invalid cell value");
     }
@@ -42,6 +66,17 @@ public class Board {
     // Check diagonal lines
     return (board[0][0] == type && board[1][1] == type && board[2][2] == type) ||
         (board[0][2] == type && board[1][1] == type && board[2][0] == type);
+  }
+
+  public boolean isFull() {
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        if (board[i][j] == CellValue.BLANK) {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 
   public void useMagicPlay(Player player) {

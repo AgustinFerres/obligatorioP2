@@ -2,6 +2,9 @@ package model;
 
 import types.CellValue;
 
+/**
+ * @author Agustin Ferres, 323408; Facundo San Andrea, 258053
+ */
 public class Player {
 
   private final String name;
@@ -11,6 +14,9 @@ public class Player {
   private int score;
   private int magicPlay;
 
+  /**
+   * @author Agustin Ferres, 323408; Facundo San Andrea, 258053
+   */
   public Player(String name, String alias, int age) {
     this.name = name;
     this.alias = alias;
@@ -43,8 +49,8 @@ public class Player {
     return magicPlay;
   }
 
-  public void useMagicPlay() {
-    magicPlay--;
+  public void setMagicPlay(int cant) {
+    this.magicPlay = cant;
   }
 
   public CellValue getType() {

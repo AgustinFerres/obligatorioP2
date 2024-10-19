@@ -1,5 +1,8 @@
 package types;
 
+/**
+ * @author Agustin Ferres, 323408; Facundo San Andrea, 258053
+ */
 public enum Position {
   A1(0, 0, "A1"),
   A2(0, 1, "A2"),

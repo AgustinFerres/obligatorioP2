@@ -2,11 +2,15 @@ package utils;
 
 import model.Board;
 import model.Player;
+import types.CellValue;
 import types.MenuOptions;
 import types.Position;
 
 import java.util.List;
 
+/**
+ * @author Agustin Ferres, 323408; Facundo San Andrea, 258053
+ */
 public class DisplayUtils {
 
   private static final String RESET = "\u001B[0m";
@@ -148,18 +152,24 @@ public class DisplayUtils {
   private static String generateCellValue(Board board, Position pos) {
     StringBuilder sb = new StringBuilder();
 
-    switch (board.getPosition(pos)) {
-    case X:
-      sb.append(RED).append("X").append(RESET);
-      break;
-    case O:
-      sb.append(BLUE).append("O").append(RESET);
-      break;
-    default:
-      sb.append(" ");
-    }
+    // Get the cell value at the specified position
+    CellValue type = board.getPosition(pos);
+
+    // Determine the color based on the cell value or if there is a winner
+    String color = board.getWinner() != null ? getTypeColor(board.getWinner().getType()) : getTypeColor(type);
+
+    // Append the colored cell value to the StringBuilder
+    sb.append(color).append(type).append(RESET);
 
     return sb.toString();
+  }
+
+  private static String getTypeColor(CellValue type) {
+    return switch (type) {
+      case X -> RED;
+      case O -> BLUE;
+      default -> RESET;
+    };
   }
 
   public static void showMenu() {
@@ -184,6 +194,13 @@ public class DisplayUtils {
   public static void showRanking(List<Player> players) {
     StringBuilder sb = new StringBuilder();
 
+
+    int longestAlias = players.stream()
+        .map(Player::getAlias)
+        .mapToInt(String::length)
+        .max()
+        .orElse(0);
+
     // Append the top delimiter
     sb.append(generateDelimiter());
 
@@ -191,6 +208,7 @@ public class DisplayUtils {
     for (Player player : players) {
       sb.append(BLUE)
           .append(player.getAlias())
+          .append(" ".repeat(longestAlias - player.getAlias().length()))
           .append(" | ")
           .append("#".repeat(Math.max(0, player.getScore())))
           .append("\n");

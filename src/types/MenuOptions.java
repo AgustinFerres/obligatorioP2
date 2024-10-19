@@ -1,5 +1,8 @@
 package types;
 
+/**
+ * @author Agustin Ferres, 323408; Facundo San Andrea, 258053
+ */
 public enum MenuOptions {
   REGISTER_PLAYER(1, "Registrar un jugador"),
   PLAY_GAME(2, "Jugar una partida"),
