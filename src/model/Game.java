@@ -176,7 +176,6 @@ public class Game {
 
           if (move.equals("M")) {
             currentBoard.useMagicPlay(currentPlayer);
-            currentPlayer.setMagicPlay(0);
 
             System.out.println("Enter move:");
             move = scanner.nextLine();

@@ -84,7 +84,7 @@ public class Board {
       throw new IllegalArgumentException("No magic plays left");
     }
 
-    player.useMagicPlay();
+    player.setMagicPlay(0);
     this.clear();
   }
 
